@@ -1,12 +1,104 @@
 ﻿<Window x:Class="CasinoGep.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CasinoGep"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Casino Gép" Height="450" Width="800">
 
-    </Grid>
+    <Window.Resources>
+        <SolidColorBrush x:Key="MenuBackground" Color="#2c3e50"/>
+        <SolidColorBrush x:Key="ButtonColor" Color="#3498db"/>
+        <Style x:Key="MenuButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonColor}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Width" Value="120"/>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <Border DockPanel.Dock="Left" Background="{StaticResource MenuBackground}" Width="150">
+            <StackPanel>
+                <TextBlock Text="Casino Menü" Foreground="White" FontSize="16" Margin="10" HorizontalAlignment="Center"/>
+                <Button Content="Játékosok" Style="{StaticResource MenuButton}" Click="PlayersButton_Click"/>
+                <Button Content="Játékok" Style="{StaticResource MenuButton}" Click="GamesButton_Click"/>
+                <Button Content="Slot Machine" Style="{StaticResource MenuButton}" Click="SlotButton_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Grid>
+
+            <Grid x:Name="PlayersView" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Játékosok" FontSize="20" Margin="10"/>
+
+                <DataGrid Grid.Row="1" x:Name="PlayersGrid" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                        <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="150"/>
+                        <DataGridTextColumn Header="Egyenleg" Binding="{Binding Balance}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+                    <Button Content="Új játékos" Click="AddPlayer_Click" Width="100" Margin="5"/>
+                    <Button Content="Törlés" Click="DeletePlayer_Click" Width="100" Margin="5"/>
+                    <Button Content="Módosítás" Click="UpdatePlayer_Click" Width="100" Margin="5"/>
+                </StackPanel>
+            </Grid>
+
+ 
+            <Grid x:Name="GamesView" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Játékok" FontSize="20" Margin="10"/>
+
+                <DataGrid Grid.Row="1" x:Name="GamesGrid" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                        <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="150"/>
+                        <DataGridTextColumn Header="Tét" Binding="{Binding Bet}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+                    <Button Content="Új játék" Click="AddGame_Click" Width="100" Margin="5"/>
+                    <Button Content="Törlés" Click="DeleteGame_Click" Width="100" Margin="5"/>
+                    <Button Content="Módosítás" Click="UpdateGame_Click" Width="100" Margin="5"/>
+                </StackPanel>
+            </Grid>
+
+   
+            <Grid x:Name="SlotView" Visibility="Visible">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Casino Slot Machine" FontSize="24" Margin="10" HorizontalAlignment="Center"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                        <Border Width="100" Height="100" BorderBrush="Black" BorderThickness="2" Margin="10">
+                            <TextBlock x:Name="Slot1" Text="7" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="100" Height="100" BorderBrush="Black" BorderThickness="2" Margin="10">
+                            <TextBlock x:Name="Slot2" Text="7" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Width="100" Height="100" BorderBrush="Black" BorderThickness="2" Margin="10">
+                            <TextBlock x:Name="Slot3" Text="7" FontSize="60" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+
+                    <Button Content="PÖRGETÉS" Width="150" Height="40" Margin="20" Click="Spin_Click"/>
+
+                    <TextBlock x:Name="ResultText" Text="Nyomj a pörgetés gombra!" FontSize="16" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="BalanceText" Text="Egyenleg: 1000" FontSize="16" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </Window>

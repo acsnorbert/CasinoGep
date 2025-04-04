@@ -20,5 +20,47 @@ namespace CasinoGep
         {
             InitializeComponent();
         }
+
+        private void PlayersButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GamesButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SlotButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void AddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void DeletePlayer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void UpdatePlayer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Spin_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Tudod mit porgess");
+        }
+        private void AddGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void DeleteGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void UpdateGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
